@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ 
+<title>FORM</title>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+<form name="myform" id="myform">
+	<table name="tab" style="width:25%" cellpadding="2px" cellspacing="3px">
+	
+		<tr><td>Enter Name:</td>
+			<td><input name="name" id="name" type="text" placeholder="Enter your fullname"/><br/></td>
+		</tr>
+		<tr><td>Enter Contact Number:</td>
+			<td><input name="number" id="number" type="text" placeholder="Personal phone number"/><br/></td>
+		</tr>
+		<tr><td>Enter Email:</td>
+			<td><input name="email" id="email" type="text" placeholder="Personal email-Id"/><br/></td>
+		</tr>
+		<tr><td>Select Gender:   </td>
+			<td><input type="radio" id="sex" value="male" name="sex" checked/>Male<br/></td>
+		</tr>
+		<tr><td></td>
+			<td><input type="radio" id="sex" value="female" name="sex"/>Female<br/></td>
+		</tr>
+		<tr><td>Address:</td>
+			<td><textarea name="addr" id="addr"></textarea></td>
+		</tr>
+		<tr><td>Enter PIN Code:</td>
+			<td><input name="zip" id="zip" type="text" placeholder="Area pin code"/><br/></td>
+		</tr>
+		<tr><td>Interests:</td>
+			<td><select name="dropdown" id="dropdown">
+					<option value="default">Choose yours</option>
+					<option value="Dancing">Dancing</option>
+					<option value="Singing">Singing</option>
+					<option value="Reading">Reading</option>
+					<option value="Travelling">Travelling</option>
+				</select></td>
+		</tr>
+
+		<tr><td></td>
+			<td><br/><input type="submit"/></td>
+		</tr>
+	</table>
+</form>
+
+
+
+<script type="text/javascript">
+	$(document).ready(function($){ 
+	$('#name').val('arjun');
+		$('#myform').submit(function() {
+		var nme=$('#name').val();
+		var nmb=$('#number').val();
+		var eml=$('#email').val();
+		var adr=$('#addr').val();
+		var nmbz=$('#zip').val();
+		var intr=$('#dropdown').val();
+		//alert(adr);
+		
+		//NAME VALIDATION
+		if(nme=="" )
+		{	alert("Enter the Name");
+			$('#name').focus();		
+			return false;
+		}
+		
+		//NUMBER VALIDATION	
+		var reg= /[0-9]{10}/;
+		var tof=reg.test(nmb);
+		if(nmb=="" || isNaN(nmb) || nmb.length!=10 || !tof){
+			alert("Enter the Number of 10 digits");
+			$('#number').focus();		
+			return false;
+		}
+		
+		//var email=$('#email').val();
+		
+		//alert(email.indexOf('@'));
+		//		alert($('#email').val());
+		//EMAIL VALIDATION	
+		//var at= eid.indexOf("@");
+		
+		var at= $('#email').val().indexOf('@');
+		//alert('at= '+ at);
+		var dot= $('#email').val().lastIndexOf('.');
+		//alert(at+"  and  "+dot);
+		if(  eml== "" || 1 > at || at+2 > dot  || eml.length  < dot+2 )
+			{
+			alert("Enter a valid Email_ID");
+			$('#email').focus();
+			return false;
+			}
+		
+		
+		//ADDR 
+		if(adr=="" ){
+			alert("Enter the Address");
+			$('#addr').focus();
+			return false;
+		}
+		
+		//ZIP
+		var regzz= /[0-9]{5}/;
+		var tofz= regzz.test(nmbz);
+		if(nmbz=="" || isNaN(nmbz) || nmbz.length!=5 || !tofz){
+			alert("Enter the Number of 5 digits");
+			$('#zip').focus();
+			return false;
+		}
+		
+		//INTERESTS VALIDATION
+		if(intr == "default"){
+			alert("Select an interest of your choice");
+			$('#dropdown').focus();
+			return false;
+		}
+		
+		});
+	});	
+	
+	
+	//GENDER VALIDATION
+	//var r= document.getElementsByName("sex");
+	//var c= 0;
+	//for(var i=0 ; i<r.length; i++){
+	//	if(r[i].checked)
+	//		c++;
+	//}
+	//if(c==0){
+	//	alert("Select your gender");
+	//	document.myform.sex.focus();
+	//	return false;
+	//}
+		
+	//return true;	
+	//}
+</script>
+</body>
+</html>

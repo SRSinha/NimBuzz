@@ -1,0 +1,117 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ 
+<title>FORM</title>
+</head>
+
+<body>
+<form name="myform" onsubmit="return(validate());">
+	<table name="tab" style="width:25%" cellpadding="2px" cellspacing="3px">
+	
+		<tr><td>Enter Name:</td>
+			<td><input name="name" type="text" placeholder="Enter your fullname"/><br/></td>
+		</tr>
+		<tr><td>Enter Contact Number:</td>
+			<td><input name="number" type="text" placeholder="Personal phone number"/><br/></td>
+		</tr>
+		<tr><td>Enter Email:</td>
+			<td><input name="email" type="text" placeholder="Personal email-Id"/><br/></td>
+		</tr>
+		<tr><td>Select Gender:   </td>
+			<td><input type="radio" value="male" name="sex" checked/>Male<br/></td>
+		</tr>
+		<tr><td></td>
+			<td><input type="radio" value="female" name="sex"/>Female<br/></td>
+		</tr>
+		<tr><td>Adress:</td>
+			<td><textarea name="addr"></textarea></td>
+		</tr>
+		<tr><td>Enter PIN Code:</td>
+			<td><input name="zip" type="text" placeholder="Area pin code"/><br/></td>
+		</tr>
+		<tr><td>Interests:</td>
+			<td><select name="dropdown">
+					<option value="default">Choose yours</option>
+					<option value="Dancing">Dancing</option>
+					<option value="Singing">Singing</option>
+					<option value="Reading">Reading</option>
+					<option value="Travelling">Travelling</option>
+				</select></td>
+		</tr>
+
+		<tr><td></td>
+			<td><br/><input type="submit"/></td>
+		</tr>
+	</table>
+</form>
+
+
+<script type="text/javascript">
+	function validate(){
+	//NAME VALIDATION
+		if(document.myform.name.value=="" ){
+			alert("Enter the Name");
+			document.myform.name.focus();
+			return false;
+		}
+	//NUMBER VALIDATION	
+		var numb=document.myform.number.value.trim();
+		var reg=/[0-9]{10}/;
+		var tof=reg.test(numb);
+		//alert(tof);
+		//if(!tof)
+		//	alert("Enter the Number of 10 digits");
+		if(numb=="" || isNaN(numb) || numb.length!=10 || !tof){
+			alert("Enter the Number of 10 digits");
+			document.myform.number.focus();
+			return false;
+		}
+	//EMAIL VALIDATION	
+		var eid = document.myform.email.value; 
+		var at= eid.indexOf("@");
+		var dot= eid.lastIndexOf(".");
+		//alert(at+"  and  "+dot);
+		if(  eid== "" || 1 > at || at+2 > dot  || eid.length  < dot+2 )
+			{
+			alert("Enter a valid Email_ID");
+			document.myform.email.focus();
+			return false;
+			}
+	//ADDRESS VALIDATION
+		if(document.myform.addr.value=="" ){
+			alert("Enter the Address");
+			document.myform.addr.focus();
+			return false;
+		}	
+	//ZIP VALIDATION	
+		var numbz=document.myform.zip.value;
+		var regz=/[0-9]{10}/;
+		var tofz= regz.test(numbz);
+		if(numbz=="" || isNaN(numbz) || numbz.length!=5 || !tofz){
+			alert("Enter the Number of 5 digits");
+			document.myform.zip.focus();
+			return false;
+		}		
+	//GENDER VALIDATION
+	/*var r= document.getElementsByName("sex");
+	var c= 0;
+	for(var i=0 ; i<r.length; i++){
+		if(r[i].checked)
+			c++;
+	}
+	if(c==0){
+		alert("Select your gender");
+		document.myform.sex.focus();
+		return false;
+	}*/
+	//INTERESTS VALIDATION
+		if(document.myform.dropdown.value == "default"){
+			alert("Select an interest of your choice");
+			document.myform.dropdown.focus();
+			return false;
+		}	
+	return true;	
+	}
+</script>
+</body>
+</html>

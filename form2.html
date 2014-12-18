@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html >
+<head>
+<title>Form 2</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" type="text/javascript"></script>
+<script src="Nivo-Slider-master/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+<link rel="stylesheet" href="Nivo-Slider-master/themes/default/default.css" type="text/css" />
+<link rel="stylesheet" href="Nivo-Slider-master/nivo-slider.css" type="text/css" />
+<style>
+html{
+margin:0;
+}
+body{
+font-size:14px;
+margin:0px;
+}
+#slider {
+	margin-left:auto;
+	margin-right:auto;
+	background:url() no-repeat 50% 50%;
+	margin-top:2%;
+}
+.slider-wrapper theme-default{
+margin-top:100px;
+
+}
+
+.theme-default .nivoSlider{
+	box-shadow: none;
+}
+
+.nivoSlider img{height:270px !important;} 
+.nivo-main-image{height:270px !important;}
+
+.main{
+	background-image:url('images/bg3.jpg');
+	background-repeat:no-repeat;
+	background-position:center center ;
+	width:920px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:1%;
+	padding-bottom:1%;
+}
+.headerr{
+	position:relative;
+	background-color:#ffffff;	
+	margin-left:1%;
+	margin-right:1%;
+	padding:.5%;
+}
+.hdrimg{
+	width: 50%;
+	float:left;
+	clear:both;
+}
+.hdrcntct{
+	float:right;
+	padding-right:10px;
+}
+.hdrclr{
+	clear:both;
+}
+#formbox {
+	width:45%;
+	background-color: rgba(0, 0, 0, 0.5);	
+	margin-left:auto;
+	margin-right:auto;
+	color:#eeeedd;
+}
+#tab {
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:2%;
+}
+#sbmtdatabox{
+	background-color: rgba(0, 0, 0, 0.7);	
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+	display:none;
+	padding:1%;
+	width:43%;
+}
+.sbmtdata{
+	background-color: rgba(0, 0, 0, 1);	
+	color:#eeeedd;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+}
+.sbmtdataerror{
+	background-color: rgba(0, 0, 0, 1);	
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	color:red;
+}
+</style>
+</head>
+
+<body>
+<div class="main">
+	<div class="headerr">
+		<div class="hdrimg"><img src= "images/nlogo.png" width="50px"/><img src= "images/nimbuzz.png" width="100px"/>
+		</div>
+		<div class='hdrcntct'>
+		<span ><b>CONTACT US</b></br>www.nimbuzz.com</br>0141-123456</span>
+		</div>
+		<div class="hdrclr"></div>
+	</div>
+
+	<div class="slider-wrapper theme-default">
+		<div class="ribbon">
+		</div>
+		<div id="slider" class="nivoSlider">
+				<img src="images/10.jpg" alt="" />
+				<a href="http://dev7studios.com"><img src="images/4.jpg" alt="" title="#htmlcaption" /></a>
+				<!--<img src="images/3.jpg" alt="" title="This is an example of a caption" />-->
+				<img src="images/2.jpg" alt="" />
+				<img src="images/6.jpg" alt="" />
+				<img src="images/7.jpg" alt="" />
+				<img src="images/8.jpg" alt="" />
+		</div>
+	</div>
+	<div id="htmlcaption" class="nivo-html-caption">
+		<strong>This</strong> is <em>Link</em> to our website<a href="#"> nimbuzz</a>.
+	</div>
+	<div id="formbox">
+		<form name="myform" id="myform" method="post">
+			<table name="tab" id="tab" style=" cellpadding="2px" cellspacing="10px">
+				<tr><td align="right">Enter Name:</td>
+					<td><input name="name" id="name" type="text" placeholder="Enter your fullname"/><br/></td>
+				</tr>
+				<tr><td align="right">Enter Contact Number:</td>
+					<td><input name="number" id="number" type="text" placeholder="Personal phone number"/><br/></td>
+				</tr>
+				<tr><td align="right">Enter Email:</td>
+					<td><input name="email" id="email" type="text" placeholder="Personal email-Id"/><br/></td>
+				</tr>
+				<tr><td align="right" rowspan="1">Select Gender:   </td>
+					<td><input type="radio" id="sex" value="male" name="sex" checked/>Male</br>
+					<input type="radio" id="sex" value="female" name="sex"/>Female</td>
+				</tr>
+				<tr><td align="right">Address:</td>
+					<td><textarea name="addr" id="addr"></textarea></td>
+				</tr>
+				<tr><td align="right">Enter PIN Code:</td>
+					<td><input name="zip" id="zip" type="text" placeholder="Area pin code"/><br/></td>
+				</tr>
+				<tr><td align="right">Interests:</td>
+					<td><select name="dropdown" id="dropdown">
+						<option value="default">Choose yours</option>
+						<option value="Dancing">Dancing</option>
+						<option value="Singing">Singing</option>
+						<option value="Reading">Reading</option>
+						<option value="Travelling">Travelling</option>
+						</select></td>
+				</tr>
+				<tr><td></td>
+					<td><br/><input type="submit"/></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="sbmtdatabox">
+		<div id="sbmtdata" class="sbmtdata"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+var error ="";
+
+$(window).load(function() {
+    $('#slider').nivoSlider();
+	});
+$('#slider').nivoSlider({
+    effect: 'random',               // Specify sets like: 'fold,fade,sliceDown'
+    slices: 15,                     // For slice animations
+    boxCols: 8,                     // For box animations
+    boxRows: 4,                     // For box animations
+    animSpeed: 500,                 // Slide transition speed
+    pauseTime: 3000,                // How long each slide will show
+    startSlide: 0,                  // Set starting Slide (0 index)
+    directionNav: true,             // Next & Prev navigation
+    controlNav: true,               // 1,2,3... navigation
+    controlNavThumbs: false,        // Use thumbnails for Control Nav
+    pauseOnHover: true,             // Stop animation while hovering
+    manualAdvance: false,           // Force manual transitions
+    prevText: 'Prev',               // Prev directionNav text
+    nextText: 'Next',               // Next directionNav text
+    randomStart: false,             // Start on a random slide
+    beforeChange: function(){},     // Triggers before a slide transition
+    afterChange: function(){},      // Triggers after a slide transition
+    slideshowEnd: function(){},     // Triggers after all slides have been shown
+    lastSlide: function(){},        // Triggers when last slide is shown
+    afterLoad: function(){}         // Triggers when slider has loaded
+});
+	
+$(document).ready(function($){ 
+	$('#myform').submit(function(e) {
+		e.preventDefault();
+		var nme=$('#name').val();
+		var nmb=$('#number').val();
+		var eml=$('#email').val();
+		var adr=$('#addr').val();
+		var nmbz=$('#zip').val();
+		var intr=$('#dropdown').val();
+		
+		//alert("HELLO FOR JAVASCRIPT");
+		//NAME VALIDATION
+		if(nme=="" )
+		{	
+			error+="Empty Name\n";
+			//alert("Enter the Name");
+			$('#name').focus();		
+			//return false;
+		}
+		
+		//NUMBER VALIDATION	
+		var reg= /[0-9]{10}/;
+		var tof=reg.test(nmb);
+		if(nmb=="" || isNaN(nmb) || nmb.length!=10 || !tof){
+			error=error+nmb+'\n';
+			//alert(error);
+			//alert("Enter the Number of 10 digits "+error);
+			$('#number').focus();		
+			//return false;
+		}
+		
+		//var email=$('#email').val();
+		//alert(email.indexOf('@'));
+		//		alert($('#email').val());
+		//EMAIL VALIDATION	
+		//var at= eid.indexOf("@");
+		
+		var at= $('#email').val().indexOf('@');
+		//alert('at= '+ at);
+		var dot= $('#email').val().lastIndexOf('.');
+		//alert(at+"  and  "+dot);
+		if(  eml== "" || 1 > at || at+2 > dot  || eml.length  < dot+2 )
+			{
+			error=error+eml+'\n';
+			//alert("Enter a valid Email_ID");
+			//alert(error);
+			$('#email').focus();
+			//return false;
+			}
+		
+		
+		//ADDR 
+		if(adr=="" ){
+			error+="Empty Address\n";
+			//alert("Enter the Address");
+			$('#addr').focus();
+			//return false;
+		}
+		
+		//ZIP
+		var regzz= /[0-9]{5}/;
+		var tofz= regzz.test(nmbz);
+		if(nmbz=="" || isNaN(nmbz) || nmbz.length!=5 || !tofz){
+			error=error+nmbz+'\n';
+			//alert("Enter the Number of 5 digits");
+			//alert(error);
+			$('#zip').focus();
+			//return false;
+		}
+		
+		//INTERESTS VALIDATION
+		if(intr == "default"){
+			//error=error+intr+'\n';
+			//alert("Select an interest of your choice");
+			$('#dropdown').focus();
+			//return false;
+		}
+		alert(error);
+		display(error);
+		});
+	});	
+	
+	function display(error){
+		document.getElementById('sbmtdatabox').style.display="block";
+		$('#sbmtdata').empty();
+		if(error=="")
+		{	
+			alert("HELLO by clicking submit");
+			var fields=$('#myform').serializeArray();
+			jQuery.each(fields,function(i,fields){
+				//$('#sbmtdata').append(fields.value + "\<br/>");
+			});
+		}
+		else if(error!="")
+		{
+			//error=error.fontcolor('red');
+			$('#sbmtdata').toggleClass('sbmtdataerror');
+			$('#sbmtdata').text(error);
+			
+		}
+	}	
+	
+</script>
+
+</body>
+</html>
